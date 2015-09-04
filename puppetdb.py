@@ -34,17 +34,6 @@ UNREPORTED_TIME = 25
 # Verbose logging on/off. Override in config by specifying 'Verbose'.
 VERBOSE_LOGGING  = False
 
-
-def get_infos(func, *args, **kwargs):
-    try:
-        return func(*args, **kwargs)
-    except HTTPError as e:
-        abort(e.response.status_code)
-    except ConnectionError:
-        abort(500)
-    except EmptyResponseError:
-        abort(204)
-
 def dispatch_value(value, key, type, type_instance=None):
     if not type_instance:
         type_instance = key
@@ -69,14 +58,11 @@ def read_callback():
     )
 
     prefix = 'com.puppetlabs.puppetdb.query.population'
-    num_nodes = get_infos(
-        puppetdb.metric,
+    num_nodes = puppetdb.metric(
         "{0}{1}".format(prefix, ':type=default,name=num-nodes'))
-    num_resources = get_infos(
-        puppetdb.metric,
+    num_resources = puppetdb.metric(
         "{0}{1}".format(prefix, ':type=default,name=num-resources'))
-    avg_resources_node = get_infos(
-        puppetdb.metric,
+    avg_resources_node = puppetdb.metric(
         "{0}{1}".format(prefix, ':type=default,name=avg-resources-per-node'))
 
     # Ftech nodes
