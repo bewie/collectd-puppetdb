@@ -20,7 +20,7 @@ from pypuppetdb import connect
 # Host to connect to. Override in config by specifying 'Host'.
 PUPPETDB_HOST    = 'localhost'
 # Port to connect to. Override in config by specifying 'Port'.
-PUPPETDB_PORT    = '8080'
+PUPPETDB_PORT    = 8080
 # Use ssl. Override in config by specifying 'SSL_VERIFY'.
 PUPPETDB_SSL     = None
 # Key used to connect to ('/path/to/private.pem'). Override in config by specifying 'Key'.
@@ -28,7 +28,7 @@ PUPPETDB_KEY     = None
 # CERT used to connect to ('/path/to/public.pem'). Override in config by specifying 'CERT'.
 PUPPETDB_CERT    = None
 #Connect timeout. Override in config by specifying 'Timeout'.
-PUPPETDB_TIMEOUT = '20'
+PUPPETDB_TIMEOUT = 20
 #Time to consider unreported nodes. Override in config by specifying 'UnreportTime'.
 UNREPORTED_TIME = 25
 # Verbose logging on/off. Override in config by specifying 'Verbose'.
@@ -122,7 +122,7 @@ def configure_callback(conf):
         if node.key == 'Host':
             PUPPETDB_HOST = node.values[0]
         elif node.key == 'Port':
-            PUPPETDB_PORT = node.values[0]
+            PUPPETDB_PORT = int(node.values[0])
         elif node.key == 'SSL_VERIFY':
             PUPPETDB_SSL = node.values[0]
         elif node.key == 'Key':
