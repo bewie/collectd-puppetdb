@@ -12,7 +12,6 @@
 #   http://collectd.org/documentation/manpages/collectd-python.5.shtml
 
 
-import pypuppetdb
 import collectd
 
 from pypuppetdb import connect
