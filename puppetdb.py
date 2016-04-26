@@ -93,18 +93,24 @@ def read_callback():
     log_verbose('population: %s\n' % num_nodes['Value'])
     dispatch_value(num_nodes['Value'], 'population','gauge')
 
+    log_verbose('resources: %s\n' % num_resources['Value'])
+    dispatch_value(num_resources['Value'], 'resources', 'gauge')
+
+    log_verbose('resources_per_node: %s\n' % avg_resources_node['Value'])
+    dispatch_value(avg_resources_node['Value'], 'resources_per_node', 'gauge')
+
     log_verbose('unreported: %s\n' % stats['unreported'])
     dispatch_value(stats['unreported'], 'unreported','gauge')
-    
+
     log_verbose('changed: %s\n' % stats['changed'])
     dispatch_value(stats['changed'], 'changed','gauge')
-    
+
     log_verbose('failed: %s\n' % stats['failed'])
     dispatch_value(stats['failed'], 'failed','gauge')
-    
+
     log_verbose('noop: %s\n' % stats['noop'])
     dispatch_value(stats['noop'], 'noop','gauge')
-    
+
     log_verbose('unchanged: %s\n' % stats['unchanged'])
     dispatch_value(stats['unchanged'], 'unchanged','gauge')
 
